@@ -31,10 +31,15 @@ function delayUnmounting(Component: Function) {
     };
 }
 
-function BoxDialog() {
+function BoxDialog(props: DelayUnmountingProps) {
     return (
-        <div>
-            aaaaa
+        <div style={{animation: props.isMounted ? 'demo-bounce-in 1s' : 'demo-bounce-out 1s'}}>
+            <div
+                className="animate-bounce text-center border"
+            >
+                ✨✨
+                ✨✨
+            </div>
         </div>
     );
 }
@@ -56,12 +61,13 @@ class DemoStateComponent extends React.Component<{}, DemoState> {
 
     render() {
         return (
-            <div>
-                <DelayUnmounting isMounted={this.state.isMounted} delayTime={500} />
-
-                <button onClick={this.toggle} className="px-2 py-1 border rounded border-gray-200 text-gray-100 hover:bg-gray-700">
+            <div className="flex">
+                <button onClick={this.toggle} className="px-2 py-1 border rounded border-gray-200 text-gray-100 hover:bg-gray-700 focus:outline-none">
                     Toggle
                 </button>
+                <div className="w-20">
+                    <DelayUnmounting isMounted={this.state.isMounted} delayTime={1000} />
+                </div>
             </div>
         );
     }
