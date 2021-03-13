@@ -35,10 +35,10 @@ function BoxDialog(props: DelayUnmountingProps) {
     return (
         <div style={{animation: props.isMounted ? 'demo-bounce-in 1s' : 'demo-bounce-out 1s'}}>
             <div
-                className="animate-bounce text-center border"
+                className="animate-bounce text-center"
             >
-                ✨✨
-                ✨✨
+                ✨✨✨✨✨✨
+                ✨✨✨✨✨✨
             </div>
         </div>
     );

@@ -9,8 +9,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <DelayedWithState />
-          <DelayedWithHooks />
+          <div className="grid auto-rows-auto gap-1">
+              <DelayedWithState />
+              <DelayedWithHooks />
+          </div>
       </header>
     </div>
   );

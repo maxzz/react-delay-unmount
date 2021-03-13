@@ -28,11 +28,11 @@ const DelayedWithHooks: React.FC = () => {
     }
 
     return (
-        <div>
-            <button onClick={toggle}>
+        <div className="h-40 flex flex-col">
+            <button onClick={toggle} className="px-2 py-1 border rounded border-gray-200 text-gray-100 hover:bg-gray-700 focus:outline-none" >
                 Toogle w/ Hooks
             </button>
-            {shouldRenderChild && (<div style={isMounted ? mountedStyle : unmountedStyle}>aa</div>)}
+            {shouldRenderChild && (<div style={isMounted ? mountedStyle : unmountedStyle}>Animated popup message</div>)}
         </div>
     );
 }
