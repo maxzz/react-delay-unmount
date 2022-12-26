@@ -50,7 +50,7 @@ type DemoState = {
     isMounted: boolean;
 }
 
-class DemoStateComponent extends React.Component<{}, DemoState> {
+export class DelayedWithState extends React.Component<{}, DemoState> {
     state = {
         isMounted: false,
     }
@@ -72,5 +72,3 @@ class DemoStateComponent extends React.Component<{}, DemoState> {
         );
     }
 }
-
-export default DemoStateComponent;

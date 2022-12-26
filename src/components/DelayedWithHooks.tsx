@@ -16,7 +16,7 @@ function useDelayUnmount(isMounted: boolean, delayTime: number) {
     return shouldRender;
 }
 
-const DelayedWithHooks: React.FC = () => {
+export const DelayedWithHooks: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);
     const shouldRenderChild = useDelayUnmount(isMounted, 500);
 
@@ -36,5 +36,3 @@ const DelayedWithHooks: React.FC = () => {
         </div>
     );
 }
-
-export default DelayedWithHooks;
