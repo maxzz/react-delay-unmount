@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import { DelayedWithState } from './components/DelayedWithState';
 import { DelayedWithHooks } from './components/DelayedWithHooks';
