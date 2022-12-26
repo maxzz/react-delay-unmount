@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import css from './animations.module.css';
 
 function useDelayUnmount(isMounted: boolean, delayTime: number) {
     const [shouldRender, setShouldRender] = useState(false);
@@ -26,8 +27,8 @@ export const DelayedWithHooks: React.FC = () => {
         setIsMounted(!isMounted);
     }
 
-    const mountedStyle = { animation: 'demo-bounce-in 1s' };
-    const unmountedStyle = { animation: 'demo-bounce-out 1s' };
+    const mountedStyle = { animation: `${css['demo-bounce-in']} 1s` };
+    const unmountedStyle = { animation: `${css['demo-bounce-out']} 1s` };
 
     return (
         <div className="h-40 flex flex-col">

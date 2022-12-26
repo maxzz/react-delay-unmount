@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './animations.module.css';
 
 type DelayUnmountingProps = {
     isMounted: boolean;
@@ -35,7 +36,7 @@ function delayUnmounting(Component: Function) {
 
 function BoxDialog({ isMounted }: DelayUnmountingProps) {
     return (
-        <div style={{ animation: isMounted ? 'demo-bounce-in 1s' : 'demo-bounce-out 1s' }}>
+        <div style={{ animation: isMounted ? `${css['demo-bounce-in']} 1s` : `${css['demo-bounce-out']} 1s` }}>
             <div className="animate-bounce text-center">
                 ✨✨✨✨✨✨
                 ✨✨✨✨✨✨
@@ -64,7 +65,7 @@ export class DelayedWithState extends React.Component<{}, DemoState> {
             <div className="flex">
 
                 <button className="px-4 py-1 border rounded border-gray-200 text-gray-100 hover:bg-gray-700 focus:outline-none" onClick={this.toggle}>
-                    Toggle w/ class
+                    Toggle w/ Class Components
                 </button>
 
                 <div className="w-20">
