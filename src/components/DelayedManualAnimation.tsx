@@ -18,11 +18,11 @@ function Animation() {
     return (<>
         {/* moving to the left */}
         <div className="flex items-center justify-center">
-            <div className="font-mono">{`${animChars[(index - 5) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 4) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 3) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 2) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 1) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 5) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 4) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 3) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 2) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 1) % animChars.length]}`}</div>
 
             <div className="font-mono">{`${animChars[(index + 0) % animChars.length]}`}</div>
 
@@ -42,11 +42,11 @@ function Animation() {
 
             <div className="font-mono">{`${animChars[(index + 0) % animChars.length]}`}</div>
 
-            <div className="font-mono">{`${animChars[(index - 1) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 2) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 3) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 4) % animChars.length]}`}</div>
-            <div className="font-mono">{`${animChars[(index - 5) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 1) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 2) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 3) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 4) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[Math.abs(index - 5) % animChars.length]}`}</div>
         </div>
     </>);
 }
