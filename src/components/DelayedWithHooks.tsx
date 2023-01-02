@@ -33,8 +33,8 @@ export const DelayedWithHooks: React.FC = () => {
     return (
         <div className="h-40 flex flex-col">
 
-            <button className="px-2 pb-1.5 border rounded border-zinc-200 text-zinc-100 hover:bg-zinc-900 focus:bg-zinc-900 focus:outline-none" onClick={toggle}>
-                Toogle w/ Hooks
+            <button className="px-2 py-2 border rounded border-zinc-200 text-zinc-100 hover:bg-zinc-900 focus:bg-zinc-900 focus:outline-none" onClick={toggle}>
+                Toogle with hooks
             </button>
 
             {shouldRenderChild && (

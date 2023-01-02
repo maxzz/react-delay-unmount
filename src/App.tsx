@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { DelayedWithState } from './components/DelayedWithState';
 import { DelayedWithHooks } from './components/DelayedWithHooks';
+import { DelayedManualAnimation } from "./components/DelayedManualanimation";
 
 export function App() {
     return (
@@ -10,13 +11,17 @@ export function App() {
                 <div className="p-4 grid grid-cols-[1fr_minmax(20ch,30ch)_1fr]  gap-y-4">
 
                     <div className="col-start-2">
+                        <DelayedWithState />
+                    </div>
+
+                    <div className="col-start-2">
                         <DelayedWithHooks />
                     </div>
 
                     <div className="col-start-2">
-                        <DelayedWithState />
+                        <DelayedManualAnimation />
                     </div>
-                    
+
                 </div>
             </header>
         </div>
