@@ -4,14 +4,19 @@ import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import css from './animations.module.css';
 import { useInterval } from '@/hooks/useInterval';
 
+const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
+
 function Animation() {
     const [text, setText] = useState('1');
+    const [index, setIndex] = useState(0);
     useInterval(() => {
         setText(`${+text + 1}`);
-        console.log('timer', text);
+        setIndex((i) => {
+            return ++i;
+        });
     }, 500);
     return (
-        <div className="">123 {text}</div>
+        <div className="font-mono">{text} {`${animChars[index % animChars.length]}`}</div>
     );
 }
 
