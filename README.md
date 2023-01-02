@@ -1,13 +1,8 @@
 ## About
 
-Investigation of the possibility of animating components when mounting / unmounting.
+React Unmount Delay Experiments. Exploring the ability to animate components on mounting/unmounting.
 
 ![](src/assets/previews/2021-03-13_2-07-43.png)
-
-## Tailwind CSS instalation
-
-yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
-npx tailwindcss init -p
 
 ## Credits
 

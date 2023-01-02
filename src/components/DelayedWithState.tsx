@@ -64,7 +64,7 @@ export class DelayedWithState extends React.Component<{}, DemoState> {
         return (
             <div className="h-40 flex flex-col">
 
-                <button className="px-2 pb-1.5 border rounded border-zinc-200 text-zinc-100 hover:bg-zinc-900 focus:outline-none" onClick={this.toggle}>
+                <button className="px-2 pb-1.5 border rounded border-zinc-200 text-zinc-100 hover:bg-zinc-900 focus:bg-zinc-900 focus:outline-none" onClick={this.toggle}>
                     Toggle w/ Class Components
                 </button>
 
