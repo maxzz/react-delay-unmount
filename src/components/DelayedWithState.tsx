@@ -62,13 +62,13 @@ export class DelayedWithState extends React.Component<{}, DemoState> {
 
     render() {
         return (
-            <div className="flex">
+            <div className="h-40 flex flex-col">
 
                 <button className="px-4 py-1 border rounded border-gray-200 text-gray-100 hover:bg-gray-700 focus:outline-none" onClick={this.toggle}>
                     Toggle w/ Class Components
                 </button>
 
-                <div className="w-20">
+                <div className="">
                     <DelayUnmounting isMounted={this.state.isMounted} delayTime={1000} />
                 </div>
             </div>
