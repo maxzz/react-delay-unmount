@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import { StartTestButton } from './StartTestButton';
 import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import css from './animations.module.css';
+import { useInterval } from '@/hooks/useInterval';
 
 function Animation() {
+    const [text, setText] = useState('1');
+    useInterval(() => {
+        setText(`${+text + 1}`);
+        console.log('timer', text);
+    }, 500);
     return (
-        <div className="">123</div>
-    )
+        <div className="">123 {text}</div>
+    );
 }
 
 export function DelayedManualAnimation() {
@@ -22,7 +28,7 @@ export function DelayedManualAnimation() {
 
     return (
         <div className="h-40 flex flex-col">
-            <StartTestButton onClick={toggle}>Delayed Manual Animation</StartTestButton>
+            <StartTestButton onClick={toggle}>ASCII Animation</StartTestButton>
 
             {shouldRenderChild && (
                 <div style={isMounted ? mountedStyle : unmountedStyle}>
