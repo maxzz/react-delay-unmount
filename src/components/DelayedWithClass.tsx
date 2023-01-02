@@ -1,4 +1,5 @@
 import React from 'react';
+import { StartTestButton } from './StartTestButton';
 import css from './animations.module.css';
 
 type DelayUnmountingProps = {
@@ -10,7 +11,7 @@ type DelayUnmountingState = {
     shouldRender: boolean;
 };
 
-function delayUnmounting(Component: Function) {
+function delayedUnmounting(Component: Function) {
     return class DelayedComponent extends React.Component<DelayUnmountingProps, DelayUnmountingState> {
         state = {
             shouldRender: this.props.isMounted
@@ -18,9 +19,7 @@ function delayUnmounting(Component: Function) {
 
         componentDidUpdate(prevProps: DelayUnmountingProps) {
             if (prevProps.isMounted && !this.props.isMounted) {
-                setTimeout(() => {
-                    this.setState({ shouldRender: false });
-                }, this.props.delayTime);
+                setTimeout(() => this.setState({ shouldRender: false }), this.props.delayTime);
             } else if (!prevProps.isMounted && this.props.isMounted) {
                 this.setState({ shouldRender: true });
             }
@@ -45,7 +44,7 @@ function BoxDialog({ isMounted }: DelayUnmountingProps) {
     );
 }
 
-const DelayUnmounting = delayUnmounting(BoxDialog);
+const DelayedUnmountingBoxDialog = delayedUnmounting(BoxDialog);
 
 type DemoState = {
     isMounted: boolean;
@@ -64,12 +63,10 @@ export class DelayedWithState extends React.Component<{}, DemoState> {
         return (
             <div className="h-40 flex flex-col">
 
-                <button className="px-2 py-2 border rounded border-zinc-200 text-zinc-100 hover:bg-zinc-900 focus:bg-zinc-900 focus:outline-none" onClick={this.toggle}>
-                    Toggle with class components
-                </button>
+                <StartTestButton onClick={this.toggle}>Toggle with class components</StartTestButton>
 
                 <div className="">
-                    <DelayUnmounting isMounted={this.state.isMounted} delayTime={1000} />
+                    <DelayedUnmountingBoxDialog isMounted={this.state.isMounted} delayTime={1000} />
                 </div>
             </div>
         );

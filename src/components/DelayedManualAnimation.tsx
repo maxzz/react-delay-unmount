@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { StartTestButton } from './StartTestButton';
 
 export function DelayedManualAnimation() {
-  return (
-    <div>DelayedManualanimation</div>
-  )
+    return (
+        <div>
+            <StartTestButton>Delayed Manual Animation</StartTestButton>
+        </div>
+    );
 }
