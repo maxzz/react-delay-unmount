@@ -4,19 +4,30 @@ import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import css from './animations.module.css';
 import { useInterval } from '@/hooks/useInterval';
 
-const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
+// const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
+const animChars = ['.', 'o', 'O', '0', 'O', 'o', '.',];
 
 function Animation() {
-    const [text, setText] = useState('1');
     const [index, setIndex] = useState(0);
     useInterval(() => {
-        setText(`${+text + 1}`);
         setIndex((i) => {
             return ++i;
         });
     }, 500);
     return (
-        <div className="font-mono">{text} {`${animChars[index % animChars.length]}`}</div>
+        <div className="flex items-center justify-center">
+            <div className="font-mono">{`${animChars[(index - 5) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index - 4) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index - 3) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index - 2) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index - 1) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index + 0) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index + 1) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index + 2) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index + 3) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index + 4) % animChars.length]}`}</div>
+            <div className="font-mono">{`${animChars[(index + 5) % animChars.length]}`}</div>
+        </div>
     );
 }
 
