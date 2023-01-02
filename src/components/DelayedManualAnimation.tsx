@@ -8,42 +8,46 @@ function MoveToLeft({ index }: { index: number; }) {
     // const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
     // const animChars = ['.', 'o', 'O', '0', 'O', 'o', '.',];
     const animChars = ['.', 'o', 'O', 'o', '.',];
-    return (<>
-        <div className="font-mono">{`${animChars[Math.abs(index - 5) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 4) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 3) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 2) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 1) % animChars.length]}`}</div>
+    return (
+        <div className="font-mono flex items-center justify-center">
+            <div>{`${animChars[Math.abs(index - 5) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 4) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 3) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 2) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 1) % animChars.length]}`}</div>
 
-        <div className="font-mono">{`${animChars[(index + 0) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 0) % animChars.length]}`}</div>
 
-        <div className="font-mono">{`${animChars[(index + 1) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 2) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 3) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 4) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 5) % animChars.length]}`}</div>
-    </>);
+            <div>{`${animChars[(index + 1) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 2) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 3) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 4) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 5) % animChars.length]}`}</div>
+        </div>
+    );
 }
 
 function MoveToRight({ index }: { index: number; }) {
     // const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
     // const animChars = ['.', 'o', 'O', '0', 'O', 'o', '.',];
     const animChars = ['.', 'o', 'O', 'o', '.',];
-    return (<>
-        <div className="font-mono">{`${animChars[(index + 5) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 4) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 3) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 2) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[(index + 1) % animChars.length]}`}</div>
+    return (
+        <div className="font-mono flex items-center justify-center">
+            <div>{`${animChars[(index + 5) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 4) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 3) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 2) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 1) % animChars.length]}`}</div>
 
-        <div className="font-mono">{`${animChars[(index + 0) % animChars.length]}`}</div>
+            <div>{`${animChars[(index + 0) % animChars.length]}`}</div>
 
-        <div className="font-mono">{`${animChars[Math.abs(index - 1) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 2) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 3) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 4) % animChars.length]}`}</div>
-        <div className="font-mono">{`${animChars[Math.abs(index - 5) % animChars.length]}`}</div>
-    </>);
+            <div>{`${animChars[Math.abs(index - 1) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 2) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 3) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 4) % animChars.length]}`}</div>
+            <div>{`${animChars[Math.abs(index - 5) % animChars.length]}`}</div>
+        </div>
+    );
 }
 
 function Animation() {
@@ -54,12 +58,8 @@ function Animation() {
         });
     }, 500);
     return (<>
-        <div className="flex items-center justify-center">
-            <MoveToLeft index={index} />
-        </div>
-        <div className="flex items-center justify-center">
-            <MoveToRight index={index} />
-        </div>
+        <MoveToLeft index={index} />
+        <MoveToRight index={index} />
     </>);
 }
 
