@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { DelayedWithState } from './components/DelayedWithState';
+import { DelayedWithState } from './components/DelayedWithClass';
 import { DelayedWithHooks } from './components/DelayedWithHooks';
 import { DelayedManualAnimation } from "./components/DelayedManualanimation";
 
