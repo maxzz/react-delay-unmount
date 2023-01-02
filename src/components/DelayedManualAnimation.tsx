@@ -16,18 +16,24 @@ function MoveToLeft({ index }: { index: number; }) {
         ${animChars[Math.abs(index - 1) % animChars.length]}
     `.split(/[ \n]+/).join('');
     console.log('s1', a);
+
+    const b = `
+        ${animChars[(index + 0) % animChars.length]}
+    `.split(/[ \n]+/).join('');
+
+    const c = `
+        ${animChars[(index + 1) % animChars.length]}
+        ${animChars[(index + 2) % animChars.length]}
+        ${animChars[(index + 3) % animChars.length]}
+        ${animChars[(index + 4) % animChars.length]}
+        ${animChars[(index + 5) % animChars.length]}    
+    `.replace(/[ \n]+/g, '');
     
     return (
         <div className="font-mono flex items-center justify-center">
             {a}
-
-            <div>{`${animChars[(index + 0) % animChars.length]}`}</div>
-
-            <div>{`${animChars[(index + 1) % animChars.length]}`}</div>
-            <div>{`${animChars[(index + 2) % animChars.length]}`}</div>
-            <div>{`${animChars[(index + 3) % animChars.length]}`}</div>
-            <div>{`${animChars[(index + 4) % animChars.length]}`}</div>
-            <div>{`${animChars[(index + 5) % animChars.length]}`}</div>
+            {b}
+            {c}
         </div>
     );
 }
