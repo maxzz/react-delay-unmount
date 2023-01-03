@@ -73,10 +73,21 @@ function MoveToRight({ index }: { index: number; }) {
     );
 }
 
+/*
+*/
+
 function MoveAscii({ index }: { index: number; }) {
-    // const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
-    // const animChars = ['.', 'o', 'O', '0', 'O', 'o', '.',];
-    const animChars = '▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃ ▁'.split(' ');
+    // const animChars = '▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃ ▁'.split(' ');
+    // const animChars = '← ↖ ↑ ↗ → ↘ ↓ ↙'.split(' ');
+    // const animChars = '▉▊▋▌▍▎▏▎▍▌▋▊▉'.split(' ');
+    // const animChars = '▖ ▘ ▝ ▗'.split(' ');
+    // const animChars = '┤ ┘ ┴ └ ├ ┌ ┬ ┐'.split(' ');
+    const animChars = '◢ ◣ ◤ ◥'.split(' ');
+    // const animChars = '◰ ◳ ◲ ◱'.split(' ');
+    // const animChars = '◴ ◷ ◶ ◵'.split(' ');
+    // const animChars = '◐ ◓ ◑ ◒'.split(' ');
+    // const animChars = '◡◡ ⊙⊙ ◠◠'.split(' ');
+    // const animChars = '⣾⣽⣻⢿⡿⣟⣯⣷ ⠁⠂⠄⡀⢀⠠⠐⠈'.split(' ');
     const a = `
         ${animChars[(index + 5) % animChars.length]}
         ${animChars[(index + 4) % animChars.length]}
@@ -97,6 +108,7 @@ function MoveAscii({ index }: { index: number; }) {
         ${animChars[Math.abs(index - 4) % animChars.length]}
         ${animChars[Math.abs(index - 5) % animChars.length]}
     `.replace(/[ \n]+/g, '');
+
     return (
         <div className="flex items-center justify-center">
             {a}
