@@ -13,12 +13,11 @@
 }
 
 @keyframes demo-bounce-out {
-20% {
-    transform: scale(1.2);
-}
-100% {
-    transform: scale(0);
-    opacity: 0;
-}
- 
+    20% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }

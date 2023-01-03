@@ -73,15 +73,49 @@ function MoveToRight({ index }: { index: number; }) {
     );
 }
 
+function MoveAscii({ index }: { index: number; }) {
+    // const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
+    // const animChars = ['.', 'o', 'O', '0', 'O', 'o', '.',];
+    const animChars = '▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃ ▁'.split(' ');
+    const a = `
+        ${animChars[(index + 5) % animChars.length]}
+        ${animChars[(index + 4) % animChars.length]}
+        ${animChars[(index + 3) % animChars.length]}
+        ${animChars[(index + 2) % animChars.length]}
+        ${animChars[(index + 1) % animChars.length]}
+    `.split(/[ \n]+/).join('');
+    console.log('s1', a);
+
+    const b = `
+        ${animChars[(index + 0) % animChars.length]}
+    `.split(/[ \n]+/).join('');
+
+    const c = `
+        ${animChars[Math.abs(index - 1) % animChars.length]}
+        ${animChars[Math.abs(index - 2) % animChars.length]}
+        ${animChars[Math.abs(index - 3) % animChars.length]}
+        ${animChars[Math.abs(index - 4) % animChars.length]}
+        ${animChars[Math.abs(index - 5) % animChars.length]}
+    `.replace(/[ \n]+/g, '');
+    return (
+        <div className="flex items-center justify-center">
+            {a}
+            {b}
+            {c}
+        </div>
+    );
+}
+
 function Animation() {
     const [index, setIndex] = useState(0);
-    // useInterval(() => {
-    //     setIndex((i) => {
-    //         return ++i;
-    //     });
-    // }, 2500);
+    useInterval(() => {
+        setIndex((i) => {
+            return ++i;
+        });
+    }, 500);
     return (<>
-        <MoveToLeft index={index} />
+        {/* <MoveToLeft index={index} /> */}
+        <MoveAscii index={index} />
         {/* <MoveToRight index={index} /> */}
     </>);
 }
