@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { StartTestButton } from './StartTestButton';
 import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import css from './animations.module.css';
@@ -73,9 +73,6 @@ function MoveToRight({ index }: { index: number; }) {
     );
 }
 
-/*
-*/
-
 function MoveAscii({ index }: { index: number; }) {
     // const animChars = '▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃ ▁'.split(' ');
     // const animChars = '← ↖ ↑ ↗ → ↘ ↓ ↙'.split(' ');
@@ -118,6 +115,30 @@ function MoveAscii({ index }: { index: number; }) {
     );
 }
 
+/*
+    const spinnerFrames = ['▁', '▃', '▄', '▅', '▆', '▇', '█', '▇', '▆', '▅', '▄', '▃'];
+    let currFrame = 0;
+    function nextFrame() {
+        $('#question-header a').html(spinnerFrames[currFrame]);
+        currFrame = (currFrame == spinnerFrames.length - 1) ? 0 : currFrame + 1;
+    }
+    setInterval(nextFrame, 100);
+*/
+
+function MoveSingleBar({ index }: { index: number; }) {
+    const animChars = '⣾⣽⣻⢿⡿⣟⣯⣷';
+    const frameRef = useRef(index);
+
+    const a = animChars[frameRef.current];
+    frameRef.current = (frameRef.current == animChars.length - 1) ? 0 : frameRef.current + 1;
+
+    return (
+        <div className="flex items-center justify-center">
+            {a}
+        </div>
+    );
+}
+
 function Animation() {
     const [index, setIndex] = useState(0);
     useInterval(() => {
@@ -127,7 +148,8 @@ function Animation() {
     }, 500);
     return (<>
         {/* <MoveToLeft index={index} /> */}
-        <MoveAscii index={index} />
+        {/* <MoveAscii index={index} /> */}
+        <MoveSingleBar index={index} />
         {/* <MoveToRight index={index} /> */}
     </>);
 }
@@ -154,7 +176,7 @@ export function DelayedManualAnimation() {
                     </div>
 
                     <label className="px-[calc(20%)] flex flex-col space-x-4">
-                        <input className={classNames("flex-1", cssRange.range)} type="range" min="40" max="218" />
+                        <input className={classNames("flex-1", cssRange.range)} type="range" min="0" max="20" />
                         <span>speed</span>
                     </label>
                 </div>
