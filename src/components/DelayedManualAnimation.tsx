@@ -129,8 +129,8 @@ function MoveSingleBar({ index }: { index: number; }) {
     const animChars = '⣾⣽⣻⢿⡿⣟⣯⣷';
     const frameRef = useRef(index);
 
-    const a = animChars[frameRef.current];
-    frameRef.current = (frameRef.current == animChars.length - 1) ? 0 : frameRef.current + 1;
+    const a = animChars[frameRef.current++];
+    frameRef.current = frameRef.current % animChars.length;
 
     return (
         <div className="flex items-center justify-center">
@@ -139,13 +139,13 @@ function MoveSingleBar({ index }: { index: number; }) {
     );
 }
 
-function Animation() {
+function Animation({ speed }: { speed: number; }) {
     const [index, setIndex] = useState(0);
     useInterval(() => {
         setIndex((i) => {
             return ++i;
         });
-    }, 500);
+    }, speed);
     return (<>
         {/* <MoveToLeft index={index} /> */}
         {/* <MoveAscii index={index} /> */}
@@ -157,6 +157,9 @@ function Animation() {
 export function DelayedManualAnimation() {
     const [isMounted, setIsMounted] = useState(false);
     const shouldRenderChild = useDelayUnmount(isMounted, 500);
+
+    const maxSpeed = 20;
+    const [speed, setSpeed] = useState(5);
 
     function toggle() {
         setIsMounted(!isMounted);
@@ -172,12 +175,15 @@ export function DelayedManualAnimation() {
             {shouldRenderChild && (
                 <div className="font-mono text-sm" style={isMounted ? mountedStyle : unmountedStyle}>
                     <div className="pt-4">
-                        <Animation />
+                        <Animation speed={(maxSpeed - speed) * 100} />
                     </div>
 
                     <label className="px-[calc(20%)] flex flex-col space-x-4">
-                        <input className={classNames("flex-1", cssRange.range)} type="range" min="0" max="20" />
-                        <span>speed</span>
+                        <input
+                            className={classNames("flex-1", cssRange.range)} type="range" min="0" max={maxSpeed}
+                            value={speed} onChange={(event) => setSpeed(+event.target.value)}
+                        />
+                        <span>speed {speed * 100}</span>
                     </label>
                 </div>
             )}
