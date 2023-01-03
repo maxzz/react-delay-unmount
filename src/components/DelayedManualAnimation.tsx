@@ -139,7 +139,7 @@ function MoveSingleBar({ index }: { index: number; }) {
     );
 }
 
-function Animation({ speed }: { speed: number; }) {
+function Animation({ speed }: { speed: number | null; }) {
     const [index, setIndex] = useState(0);
     useInterval(() => {
         setIndex((i) => {
@@ -171,7 +171,7 @@ export function DelayedManualAnimation() {
             {shouldRenderChild && (
                 <div className="font-mono text-sm" style={isMounted ? mountedStyle : unmountedStyle}>
                     <div className="pt-4">
-                        <Animation speed={(maxSpeed - speed) * 100} />
+                        <Animation speed={speed ? (maxSpeed - speed) * 100 : null} />
                     </div>
 
                     <label className="px-[20%] font-mono flex flex-col space-x-4">
@@ -179,7 +179,9 @@ export function DelayedManualAnimation() {
                             className={classNames("flex-1", cssRange.range)} type="range" min="0" max={maxSpeed}
                             value={speed} onChange={(event) => setSpeed(+event.target.value)}
                         />
-                        <span title={`Interval ${(maxSpeed - speed) * 100} ms`}>speed {`${speed}`.padStart(2, '\u00a0')}</span>
+                        <span title={speed ? `Interval ${(maxSpeed - speed) * 100} ms` : 'stopped'}>
+                            speed {`${speed}`.padStart(2, '\u00a0')}
+                        </span>
                     </label>
                 </div>
             )}
