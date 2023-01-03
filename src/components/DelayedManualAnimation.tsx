@@ -159,18 +159,14 @@ export function DelayedManualAnimation() {
     const shouldRenderChild = useDelayUnmount(isMounted, 500);
 
     const maxSpeed = 20;
-    const [speed, setSpeed] = useState(5);
-
-    function toggle() {
-        setIsMounted(!isMounted);
-    }
+    const [speed, setSpeed] = useState(15);
 
     const mountedStyle = { animation: `${css['demo-bounce-in']} 1s` };
     const unmountedStyle = { animation: `${css['demo-bounce-out']} 1s` };
 
     return (
         <div className="h-40 flex flex-col">
-            <StartTestButton onClick={toggle}>ASCII Animation</StartTestButton>
+            <StartTestButton onClick={() => setIsMounted(v => !v)}>ASCII Animation</StartTestButton>
 
             {shouldRenderChild && (
                 <div className="font-mono text-sm" style={isMounted ? mountedStyle : unmountedStyle}>
@@ -178,12 +174,12 @@ export function DelayedManualAnimation() {
                         <Animation speed={(maxSpeed - speed) * 100} />
                     </div>
 
-                    <label className="px-[calc(20%)] flex flex-col space-x-4">
+                    <label className="px-[20%] font-mono flex flex-col space-x-4">
                         <input
                             className={classNames("flex-1", cssRange.range)} type="range" min="0" max={maxSpeed}
                             value={speed} onChange={(event) => setSpeed(+event.target.value)}
                         />
-                        <span>speed {speed * 100}</span>
+                        <span title={`Interval ${(maxSpeed - speed) * 100} ms`}>speed {`${speed}`.padStart(2, '\u00a0')}</span>
                     </label>
                 </div>
             )}
