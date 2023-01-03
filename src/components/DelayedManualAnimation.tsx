@@ -3,6 +3,8 @@ import { StartTestButton } from './StartTestButton';
 import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import css from './animations.module.css';
 import { useInterval } from '@/hooks/useInterval';
+import cssRange from './UI/range.module.css';
+import { classNames } from '@/utils/classnames';
 
 function MoveToLeft({ index }: { index: number; }) {
     // const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
@@ -30,7 +32,7 @@ function MoveToLeft({ index }: { index: number; }) {
     `.replace(/[ \n]+/g, '');
 
     return (
-        <div className="font-mono flex items-center justify-center">
+        <div className="flex items-center justify-center">
             {a}
             {b}
             {c}
@@ -63,7 +65,7 @@ function MoveToRight({ index }: { index: number; }) {
         ${animChars[Math.abs(index - 5) % animChars.length]}
     `.replace(/[ \n]+/g, '');
     return (
-        <div className="font-mono flex items-center justify-center">
+        <div className="flex items-center justify-center">
             {a}
             {b}
             {c}
@@ -73,14 +75,14 @@ function MoveToRight({ index }: { index: number; }) {
 
 function Animation() {
     const [index, setIndex] = useState(0);
-    useInterval(() => {
-        setIndex((i) => {
-            return ++i;
-        });
-    }, 500);
+    // useInterval(() => {
+    //     setIndex((i) => {
+    //         return ++i;
+    //     });
+    // }, 2500);
     return (<>
         <MoveToLeft index={index} />
-        <MoveToRight index={index} />
+        {/* <MoveToRight index={index} /> */}
     </>);
 }
 
@@ -100,8 +102,15 @@ export function DelayedManualAnimation() {
             <StartTestButton onClick={toggle}>ASCII Animation</StartTestButton>
 
             {shouldRenderChild && (
-                <div style={isMounted ? mountedStyle : unmountedStyle}>
-                    <Animation />
+                <div className="font-mono text-sm" style={isMounted ? mountedStyle : unmountedStyle}>
+                    <div className="pt-4">
+                        <Animation />
+                    </div>
+
+                    <label className="px-[calc(20%)] flex flex-col space-x-4">
+                        <input className={classNames("flex-1", cssRange.range)} type="range" min="40" max="218" />
+                        <span>speed</span>
+                    </label>
                 </div>
             )}
 
