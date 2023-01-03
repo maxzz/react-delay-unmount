@@ -141,16 +141,12 @@ function MoveSingleBar({ index }: { index: number; }) {
 
 function Animation({ speed }: { speed: number | null; }) {
     const [index, setIndex] = useState(0);
-    useInterval(() => {
-        setIndex((i) => {
-            return ++i;
-        });
-    }, speed);
+    useInterval(() => setIndex((i) => ++i), speed);
     return (<>
-        {/* <MoveToLeft index={index} /> */}
-        {/* <MoveAscii index={index} /> */}
+        <MoveToLeft index={index} />
+        <MoveToRight index={index} />
+        <MoveAscii index={index} />
         <MoveSingleBar index={index} />
-        {/* <MoveToRight index={index} /> */}
     </>);
 }
 
