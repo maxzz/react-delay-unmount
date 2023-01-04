@@ -75,6 +75,7 @@ function MoveToRight({ index }: { index: number; }) {
 
 function MoveAscii({ index }: { index: number; }) {
     // const animChars = '▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃ ▁'.split(' ');
+    // const animChars = '▁▃▄▅▆▇█▇▆▅▄▃';
     // const animChars = '← ↖ ↑ ↗ → ↘ ↓ ↙'.split(' ');
     // const animChars = '▉▊▋▌▍▎▏▎▍▌▋▊▉'.split(' ');
     // const animChars = '▖ ▘ ▝ ▗'.split(' ');
@@ -115,17 +116,7 @@ function MoveAscii({ index }: { index: number; }) {
     );
 }
 
-/*
-    const spinnerFrames = ['▁', '▃', '▄', '▅', '▆', '▇', '█', '▇', '▆', '▅', '▄', '▃'];
-    let currFrame = 0;
-    function nextFrame() {
-        $('#question-header a').html(spinnerFrames[currFrame]);
-        currFrame = (currFrame == spinnerFrames.length - 1) ? 0 : currFrame + 1;
-    }
-    setInterval(nextFrame, 100);
-*/
-
-function MoveSingleBar({ index }: { index: number; }) {
+function SingleBar({ index }: { index: number; }) {
     const animChars = '⣾⣽⣻⢿⡿⣟⣯⣷';
     const frameRef = useRef(index);
 
@@ -139,14 +130,94 @@ function MoveSingleBar({ index }: { index: number; }) {
     );
 }
 
+// broken with useRef: remember each odd i.e. 1,2,4,8,10,  1,3,5,7,9,  0,2,4,8,10,  1,3,5,7,9
+// function MultipleBar({ index }: { index: number; }) {
+//     const animChars = [
+//         // "( ●    )",
+//         // "(  ●   )",
+//         // "(   ●  )",
+//         // "(    ● )",
+//         // "(     ●)",
+//         // "(    ● )",
+//         // "(   ●  )",
+//         // "(  ●   )",
+//         // "( ●    )",
+//         // "(●     )",
+//         "(0     )",
+//         "( 1    )",
+//         "(  2   )",
+//         "(   3  )",
+//         "(    4 )",
+//         "(     5)",
+//         "(    a )",
+//         "(   b  )",
+//         "(  c   )",
+//         "( d    )",
+//         "(e     )",
+//     ];
+//     const frameRef = useRef(index);
+//     //console.log('i', index);
+    
+//     const a = animChars[frameRef.current];
+//     frameRef.current = ++frameRef.current % animChars.length;
+
+//     console.log('frameRef.current', frameRef.current, 'i = ', index);
+
+//     return (
+//         <div className="flex items-center justify-center whitespace-pre">
+//             {a} frameRef.current {frameRef.current} index {index}
+//         </div>
+//     );
+// }
+
+function MultipleBar({ index }: { index: number; }) {
+    const animChars = [
+        // "( ●    )",
+        // "(  ●   )",
+        // "(   ●  )",
+        // "(    ● )",
+        // "(     ●)",
+        // "(    ● )",
+        // "(   ●  )",
+        // "(  ●   )",
+        // "( ●    )",
+        // "(●     )",
+        "(0     )",
+        "( 1    )",
+        "(  2   )",
+        "(   3  )",
+        "(    4 )",
+        "(     5)",
+        "(    a )",
+        "(   b  )",
+        "(  c   )",
+        "( d    )",
+        "(e     )",
+    ];
+    const frameRef = useRef(index);
+    //console.log('i', index);
+    
+    const a = animChars[index % animChars.length];
+    frameRef.current = ++frameRef.current % animChars.length;
+
+    console.log('frameRef.current', frameRef.current, 'i = ', index);
+
+    return (
+        <div className="flex items-center justify-center whitespace-pre">
+            {a} frameRef.current {frameRef.current} index {index}
+        </div>
+    );
+}
+
 function Animation({ speed }: { speed: number | null; }) {
     const [index, setIndex] = useState(0);
     useInterval(() => setIndex((i) => ++i), speed);
     return (<>
-        <MoveToLeft index={index} />
+        {/* <MoveToLeft index={index} />
         <MoveToRight index={index} />
         <MoveAscii index={index} />
-        <MoveSingleBar index={index} />
+        <SingleBar index={index} /> */}
+        <MultipleBar index={index} />
     </>);
 }
 
@@ -162,7 +233,7 @@ export function DelayedManualAnimation() {
 
     return (
         <div className="h-40 flex flex-col">
-            <StartTestButton onClick={() => setIsMounted(v => !v)}>ASCII Animation</StartTestButton>
+            <StartTestButton onClick={() => setIsMounted(v => !v)}>ASCII Animations</StartTestButton>
 
             {shouldRenderChild && (
                 <div className="font-mono text-sm" style={isMounted ? mountedStyle : unmountedStyle}>
@@ -170,7 +241,7 @@ export function DelayedManualAnimation() {
                         <Animation speed={speed ? (maxSpeed - speed) * 100 : null} />
                     </div>
 
-                    <label className="px-[20%] font-mono flex flex-col space-x-4">
+                    <label className="px-[20%] font-mono flex flex-col space-x-4 select-none">
                         <input
                             className={classNames("flex-1", cssRange.range)} type="range" min="0" max={maxSpeed}
                             value={speed} onChange={(event) => setSpeed(+event.target.value)}
