@@ -16,7 +16,8 @@ function Animation({ speed }: { speed: number | null; }) {
         <MoveToRight index={index} />
         <MoveAscii index={index} />
         <SingleBar index={index} />
-        <MultipleBar index={index} />
+        <MultipleBar index={index} animationName="bouncingBall" />
+        <MultipleBar index={index} animationName="aesthetic" />
     </>);
 }
 
