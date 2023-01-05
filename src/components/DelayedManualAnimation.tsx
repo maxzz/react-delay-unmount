@@ -18,6 +18,7 @@ function Animation({ speed }: { speed: number | null; }) {
         <SingleBar index={index} />
         <MultipleBar index={index} animationName="bouncingBall" />
         <MultipleBar index={index} animationName="aesthetic" />
+        <MultipleBar index={index} animationName="star" />
     </>);
 }
 
@@ -26,7 +27,7 @@ export function DelayedManualAnimation() {
     const shouldRenderChild = useDelayUnmount(isMounted, 500);
 
     const maxSpeed = 20;
-    const [speed, setSpeed] = useState(15);
+    const [speed, setSpeed] = useState(19);
 
     const mountedStyle = { animation: `${css['demo-bounce-in']} 1s` };
     const unmountedStyle = { animation: `${css['demo-bounce-out']} 1s` };

@@ -6,7 +6,7 @@ export type AnimationData = {
     frames: string[];
 };
 
-type AnimationName = 'bouncingBall' | 'aesthetic';
+type AnimationName = 'bouncingBall' | 'aesthetic' | 'star';
 
 export const animationsArray: Record<AnimationName, AnimationData> = {
     bouncingBall: {
@@ -36,16 +36,25 @@ export const animationsArray: Record<AnimationName, AnimationData> = {
             "▰▰▰▰▰▰▰",
             "▰▱▱▱▱▱▱"
         ]
-    }
+    },
+    star: {
+		"interval": 70,
+		"frames": [
+			"✶",
+			"✸",
+			"✹",
+			"✺",
+			"✹",
+			"✷"
+		]
+	},    
 };
 
 export function MultipleBar({ index, animationName }: { index: number; animationName: AnimationName }) {
-    const animChars = animationsArray[animationName].frames;
-    const a = animChars[index % animChars.length];
-
+    const chars = animationsArray[animationName].frames;
     return (
         <div className="flex items-center justify-center whitespace-pre">
-            {a}
+            {chars[index % chars.length]}
         </div>
     );
 }

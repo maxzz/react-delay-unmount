@@ -110,6 +110,7 @@ export function MoveAscii({ index }: { index: number; }) {
     );
 }
 
+//https://github.com/sindresorhus/cli-spinners/blob/main/spinners.json
 export function SingleBar({ index }: { index: number; }) {
     const animChars = '⣾⣽⣻⢿⡿⣟⣯⣷';
     const frameRef = useRef(index);
