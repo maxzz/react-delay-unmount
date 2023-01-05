@@ -32,10 +32,23 @@
     border: 1px solid var(--color-text);
     border-radius: var(--thumb-radius);
     cursor: grab;
+
+    position: relative;
 }
 
 .range:active::-webkit-slider-thumb {
     cursor: grabbing;
+}
+
+
+.range::-webkit-slider-runnable-track::after {
+    content: '111';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    z-index: 100;
 }
 
 /* firefox */
