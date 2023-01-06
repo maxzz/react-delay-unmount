@@ -19,6 +19,7 @@ function Animation({ speed }: { speed: number | null; }) {
         <MultipleBar index={index} animationName="bouncingBall" />
         <MultipleBar index={index} animationName="aesthetic" />
         <MultipleBar index={index} animationName="star" />
+        <MultipleBar index={index} animationName="simpleDotsScrolling" />
     </>);
 }
 

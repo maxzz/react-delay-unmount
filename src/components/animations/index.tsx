@@ -6,9 +6,9 @@ export type AnimationData = {
     frames: string[];
 };
 
-type AnimationName = 'bouncingBall' | 'aesthetic' | 'star';
+export type AnimationName = keyof typeof animationsArray;
 
-export const animationsArray: Record<AnimationName, AnimationData> = {
+export const animationsArray = {
     bouncingBall: {
         interval: 180,
         frames: [
@@ -34,7 +34,7 @@ export const animationsArray: Record<AnimationName, AnimationData> = {
             "▰▰▰▰▰▱▱",
             "▰▰▰▰▰▰▱",
             "▰▰▰▰▰▰▰",
-            "▰▱▱▱▱▱▱"
+            "▰▱▱▱▱▱▱",
         ]
     },
     star: {
@@ -45,7 +45,18 @@ export const animationsArray: Record<AnimationName, AnimationData> = {
 			"✹",
 			"✺",
 			"✹",
-			"✷"
+			"✷",
+		]
+	},
+    simpleDotsScrolling: {
+		"interval": 200,
+		"frames": [
+			".  ",
+			".. ",
+			"...",
+			" ..",
+			"  .",
+			"   ",
 		]
 	},    
 };
