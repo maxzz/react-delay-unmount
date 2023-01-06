@@ -3,7 +3,7 @@ import { StartTestButton } from './StartTestButton';
 import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import { useInterval } from '@/hooks/useInterval';
 import { classNames } from '@/utils/classnames';
-import { MoveAscii, MoveToLeft, MoveToRight, MultipleBar, SingleBar } from './animations';
+import { BrokenMultipleBar, MoveAscii, MoveToLeft, MoveToRight, MultipleBar, SingleBar } from './animations';
 import css from './animations.module.css';
 import cssRange from './UI/range.module.css';
 
@@ -20,6 +20,8 @@ function Animation({ speed }: { speed: number | null; }) {
         <MultipleBar index={index} animationName="aesthetic" />
         <MultipleBar index={index} animationName="star" />
         <MultipleBar index={index} animationName="simpleDotsScrolling" />
+
+        {/* <BrokenMultipleBar index={index} /> */}
     </>);
 }
 

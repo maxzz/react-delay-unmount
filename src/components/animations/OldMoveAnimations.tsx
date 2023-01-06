@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 export function MoveToLeft({ index }: { index: number; }) {
     // const animChars = [' ', '_', '.', 'o', 'O', 'o', '.', '_', ' ', ];
@@ -126,41 +126,59 @@ export function SingleBar({ index }: { index: number; }) {
 }
 
 // broken with useRef: remember each odd i.e. 1,2,4,8,10,  1,3,5,7,9,  0,2,4,8,10,  1,3,5,7,9
-// export function MultipleBar({ index }: { index: number; }) {
-//     const animChars = [
-//         // "( ●    )",
-//         // "(  ●   )",
-//         // "(   ●  )",
-//         // "(    ● )",
-//         // "(     ●)",
-//         // "(    ● )",
-//         // "(   ●  )",
-//         // "(  ●   )",
-//         // "( ●    )",
-//         // "(●     )",
-//         "(0     )",
-//         "( 1    )",
-//         "(  2   )",
-//         "(   3  )",
-//         "(    4 )",
-//         "(     5)",
-//         "(    a )",
-//         "(   b  )",
-//         "(  c   )",
-//         "( d    )",
-//         "(e     )",
-//     ];
-//     const frameRef = useRef(index);
-//     //console.log('i', index);
-    
-//     const a = animChars[frameRef.current];
-//     frameRef.current = ++frameRef.current % animChars.length;
+export function BrokenMultipleBar({ index }: { index: number; }) {
+    const animChars = [
+        // "( ●    )",
+        // "(  ●   )",
+        // "(   ●  )",
+        // "(    ● )",
+        // "(     ●)",
+        // "(    ● )",
+        // "(   ●  )",
+        // "(  ●   )",
+        // "( ●    )",
+        // "(●     )",
 
-//     console.log('frameRef.current', frameRef.current, 'i = ', index);
+        "(0     )",
+        "( 1    )",
+        "(  2   )",
+        "(   3  )",
+        "(    4 )",
+        "(     5)",
+        "(    a )",
+        "(   b  )",
+        "(  c   )",
+        "( d    )",
+        "(e     )",
+    ];
 
-//     return (
-//         <div className="flex items-center justify-center whitespace-pre">
-//             {a} frameRef.current {frameRef.current} index {index}
-//         </div>
-//     );
-// }
+    const frameRef = useRef(index);
+    const ii = frameRef.current;
+    //console.log('i', index);
+
+    const a = animChars[frameRef.current];
+    // frameRef.current = ++frameRef.current % animChars.length;
+    //frameRef.current = ++frameRef.current;
+    //frameRef.current = frameRef.current++;
+
+    useEffect(() => {
+        console.log(`use effect ${frameRef.current}`);
+        
+        frameRef.current = index;
+
+        // let i = frameRef.current;
+        // frameRef.current = i++;
+
+        // frameRef.current = frameRef.current++;
+
+
+     });
+
+    console.log(`idx = ${`${index}`.padStart(3, ' ')}   before frameRef.current --> ${ii}   ${frameRef.current} <-- after frameRef.current`);
+
+    return (
+        <div className="flex items-center justify-center whitespace-pre">
+            {a} frameRef.current {frameRef.current} index {index}
+        </div>
+    );
+}
