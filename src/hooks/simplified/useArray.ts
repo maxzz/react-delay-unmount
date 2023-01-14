@@ -25,20 +25,6 @@ export function useArray<T>(initialValue: T[]) {
 
     }
 
-    function filter(callback: (value: T, index: number, array: T[]) => value is T) {
-        setArray((a) => a.filter<T>(callback));
-    }
-
-    // function update(index: number, newItem: T) { // the same as replace()
-    //     setArray((a) => {
-    //         return [
-    //             ...a.slice(0, index),
-    //             newItem,
-    //             ...a.slice(index + 1)
-    //         ];
-    //     });
-    // }
-
     function replace(index: number, newItem: T) {
         setArray((a) => {
             const items = [...a];
@@ -55,14 +41,18 @@ export function useArray<T>(initialValue: T[]) {
         });
     }
 
+    function filter(callback: (value: T, index: number, array: T[]) => value is T) {
+        setArray((a) => a.filter<T>(callback));
+    }
+
     return {
         array,
         set: setArray,
         push,
         insert,
         remove,
-        filter,
         replace,
         swap,
+        filter,
     }
 }
