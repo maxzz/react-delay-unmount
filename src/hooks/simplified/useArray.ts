@@ -3,10 +3,6 @@ import { useState } from "react";
 export function useArray<T>(initialValue: T[]) {
     const [array, setArray] = useState<T[]>(initialValue);
 
-    function clear() {
-        setArray([]);
-    }
-
     function push(item: T) {
         setArray((a) => [...a, item]);
     }
@@ -60,13 +56,13 @@ export function useArray<T>(initialValue: T[]) {
     }
 
     return {
-        clear,
+        array,
+        set: setArray,
         push,
         insert,
         remove,
         filter,
         replace,
         swap,
-        setArray,
     }
 }
