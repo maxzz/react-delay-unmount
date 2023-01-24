@@ -12,19 +12,21 @@ export class Vector {
     static sub(v1: Vector, v2: Vector) {
         return new Vector(v1.x - v2.x, v1.y - v2.y);
     }
-    add(x: number, y: number) {
+    add(x: number, y: number): void;
+    add({x, y}: {x: number, y: number}): void;
+    add(x: any, y?: number) {
         if (arguments.length === 1) {
-            this.x += x.x;
-            this.y += x.y;
+            this.x += (x as {x: number, y: number}).x;
+            this.y += (x as {x: number, y: number}).y;
         } else if (arguments.length === 2) {
-            this.x += x;
-            this.y += y;
+            this.x += x as number;
+            this.y += y as number;
         }
         return this;
     }
-    sub({x, y}: {x: number, y: number}): void;
     sub(x: number, y: number): void;
-    sub(x: number | {x: number, y: number}, y?: number) {
+    sub({x, y}: {x: number, y: number}): void;
+    sub(x: any, y?: number) {
         if (arguments.length === 1) {
             this.x -= (x as {x: number, y: number}).x;
             this.y -= (x as {x: number, y: number}).y;
