@@ -1,6 +1,6 @@
 import React from 'react';
-import { StartTestButton } from './StartTestButton';
-import css from './animations.module.css';
+import { StartTestButton } from './UI/StartTestButton';
+import css from './UI/animations.module.css';
 
 type DelayUnmountingProps = {
     isMounted: boolean;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StartTestButton } from './StartTestButton';
 import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import { useInterval } from '@/hooks/useInterval';
 import { classNames } from '@/utils/classnames';
+import { StartTestButton } from './UI/StartTestButton';
 import { BrokenMultipleBar, MoveAscii, MoveToLeft, MoveToRight, MultipleBar, SingleBar } from './animations';
-import css from './animations.module.css';
-import cssRange from './UI/range.module.css';
+import cssRange from './UI/range/range.module.css';
+import css from './UI/animations.module.css';
 
 
 function Animation({ speed }: { speed: number | null; }) {
