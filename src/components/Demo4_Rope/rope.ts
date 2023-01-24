@@ -197,7 +197,7 @@ class Rope {
     }
 }
 
-class RopeMain {
+export class RopeMain {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
     mouse: Mouse;
@@ -277,11 +277,11 @@ function randomNumBetween(min: number, max: number) {
     return Math.random() * (max - min) + min;
 }
 
-window.addEventListener('load', () => {
-    const canvas = document.querySelector('canvas') || ((() => { throw new Error('canvas'); })());
-    const app = new RopeMain(canvas);
+// window.addEventListener('load', () => {
+//     const canvas = document.querySelector('canvas') || ((() => { throw new Error('canvas'); })());
+//     const app = new RopeMain(canvas);
 
-    window.addEventListener('resize', app.resize.bind(app));
+//     window.addEventListener('resize', app.resize.bind(app));
     
-    app.render();
-});
+//     app.render();
+// });

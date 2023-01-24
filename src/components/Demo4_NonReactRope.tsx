@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import { StartTestButton } from './UI/StartTestButton';
 import css from './UI/animations.module.css';
+import { RopeBody } from './Demo4_Rope';
 
 export function Demo4_NonReactRope() {
     const [isMounted, setIsMounted] = useState(false);
@@ -21,7 +22,7 @@ export function Demo4_NonReactRope() {
 
             {shouldRenderChild && (
                 <div style={isMounted ? mountedStyle : unmountedStyle}>
-                    Animated popup message
+                    <RopeBody />
                 </div>
             )}
         </div>
