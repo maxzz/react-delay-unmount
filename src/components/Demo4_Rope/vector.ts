@@ -36,7 +36,7 @@ export class Vector {
         }
         return this;
     }
-    mult(v: Vector) {
+    mult(v: number | {x: number; y: number}) {
         if (typeof v === 'number') {
             this.x *= v;
             this.y *= v;
