@@ -3,6 +3,7 @@ import "./App.css";
 import { Demo1_DelayedWithState } from './components/Demo1_DelayedWithClass';
 import { Demo2_DelayedWithHooks } from './components/Demo2_DelayedWithHooks';
 import { Demo3_DelayedManualAnimation } from "./components/Demo3_ManualAnimation";
+import { Demo4_NonReactRope } from "./components/Demo4_NonReactRope";
 
 export function App() {
     return (
@@ -20,6 +21,10 @@ export function App() {
 
                     <div className="col-start-2 bg-zinc-900/5">
                         <Demo3_DelayedManualAnimation />
+                    </div>
+
+                    <div className="col-start-2 bg-zinc-900/5">
+                        <Demo4_NonReactRope />
                     </div>
 
                 </div>

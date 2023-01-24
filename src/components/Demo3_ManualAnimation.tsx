@@ -36,7 +36,7 @@ export function Demo3_DelayedManualAnimation() {
     const unmountedStyle = { animation: `${css['demo-bounce-out']} 1s` };
 
     return (
-        <div className="h-40 flex flex-col">
+        <div className="h-40 min-h-[280px] flex flex-col">
             <StartTestButton onClick={() => setIsMounted(v => !v)}>ASCII Animations</StartTestButton>
 
             {shouldRenderChild && (
