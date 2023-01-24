@@ -130,7 +130,7 @@ type Config = {
     segments?: number;
     gap?: number;
     color?: string;
-}
+};
 
 class Rope {
     x: number;
@@ -197,25 +197,25 @@ class Rope {
     }
 }
 
-class App {
+class RopeMain {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
     mouse: Mouse;
     ropes: Rope[] = [];
 
-    static width = innerWidth;
-    static height = innerHeight;
-    static dpr = devicePixelRatio > 1 ? 2 : 1;
+    static width = window.innerWidth;
+    static height = window.innerHeight;
+    static dpr = window.devicePixelRatio > 1 ? 2 : 1;
     static interval = 1000 / 60;
 
-    constructor() {
-        this.canvas = document.querySelector('canvas') || ((() => { throw new Error('canvas'); })());
+    constructor(canvas: HTMLCanvasElement) {
+        this.canvas = canvas;
         this.ctx = this.canvas.getContext('2d')!;
 
         this.mouse = new Mouse(this.canvas);
 
         this.resize();
-        window.addEventListener('resize', this.resize.bind(this));
+        //window.addEventListener('resize', this.resize.bind(this));
 
         this.createRopes();
     }
@@ -223,12 +223,12 @@ class App {
     private createRopes() {
         this.ropes = [];
 
-        const TOTAL = App.width * 0.06;
+        const TOTAL = RopeMain.width * 0.06;
 
         for (let i = 0; i < TOTAL + 1; i++) {
-            const x = randomNumBetween(App.width * 0.3, App.width * 0.7);
+            const x = randomNumBetween(RopeMain.width * 0.3, RopeMain.width * 0.7);
             const y = 0;
-            const gap = randomNumBetween(App.height * 0.05, App.height * 0.08);
+            const gap = randomNumBetween(RopeMain.height * 0.05, RopeMain.height * 0.08);
             const segments = 10;
             const rope = new Rope({ x, y, gap, segments });
             rope.pin(0);
@@ -237,16 +237,17 @@ class App {
         }
     }
 
-    private resize() {
-        App.width = innerWidth;
-        App.height = innerHeight;
+    resize() {
+        RopeMain.width = window.innerWidth;
+        RopeMain.height = window.innerHeight;
 
         this.canvas.style.width = '100%';
         this.canvas.style.height = '100%';
-        this.canvas.width = App.width * App.dpr;
-        this.canvas.height = App.height * App.dpr;
-        this.ctx.scale(App.dpr, App.dpr);
 
+        this.canvas.width = RopeMain.width * RopeMain.dpr;
+        this.canvas.height = RopeMain.height * RopeMain.dpr;
+
+        this.ctx.scale(RopeMain.dpr, RopeMain.dpr);
         this.createRopes();
     }
 
@@ -256,14 +257,14 @@ class App {
 
         const frame = () => {
             requestAnimationFrame(frame);
+
             now = Date.now();
             delta = now - then;
-            if (delta < App.interval) return;
-            then = now - (delta % App.interval);
-            this.ctx.clearRect(0, 0, App.width, App.height);
+            if (delta < RopeMain.interval) { return; }
+            then = now - (delta % RopeMain.interval);
 
-            // draw here
-            this.ropes.forEach(rope => {
+            this.ctx.clearRect(0, 0, RopeMain.width, RopeMain.height);
+            this.ropes.forEach((rope) => {
                 rope.update(this.mouse);
                 rope.draw(this.ctx);
             });
@@ -276,7 +277,11 @@ function randomNumBetween(min: number, max: number) {
     return Math.random() * (max - min) + min;
 }
 
-// window.addEventListener('load', () => {
-//     const app = new App();
-//     app.render();
-// });
+window.addEventListener('load', () => {
+    const canvas = document.querySelector('canvas') || ((() => { throw new Error('canvas'); })());
+    const app = new RopeMain(canvas);
+
+    window.addEventListener('resize', app.resize.bind(app));
+    
+    app.render();
+});
