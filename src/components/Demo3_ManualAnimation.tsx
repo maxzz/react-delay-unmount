@@ -3,7 +3,7 @@ import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import { useInterval } from '@/hooks/useInterval';
 import { classNames } from '@/utils/classnames';
 import { StartTestButton } from './UI/StartTestButton';
-import { BrokenMultipleBar, MoveAscii, MoveToLeft, MoveToRight, MultipleBar, SingleBar } from './animations';
+import { BrokenMultipleBar, MoveAscii, MoveToLeft, MoveToRight, MultipleBar, SingleBar } from './ascii-animations';
 import cssRange from './UI/range/range.module.css';
 import css from './UI/animations.module.css';
 
