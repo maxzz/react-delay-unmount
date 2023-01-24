@@ -25,7 +25,7 @@ function Animation({ speed }: { speed: number | null; }) {
     </>);
 }
 
-export function DelayedManualAnimation() {
+export function Demo3_DelayedManualAnimation() {
     const [isMounted, setIsMounted] = useState(false);
     const shouldRenderChild = useDelayUnmount(isMounted, 500);
 

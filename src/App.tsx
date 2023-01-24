@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import { DelayedWithState } from './components/DelayedWithClass';
-import { DelayedWithHooks } from './components/DelayedWithHooks';
-import { DelayedManualAnimation } from "./components/DelayedManualAnimation";
+import { Demo1_DelayedWithState } from './components/Demo1_DelayedWithClass';
+import { Demo2_DelayedWithHooks } from './components/Demo2_DelayedWithHooks';
+import { Demo3_DelayedManualAnimation } from "./components/Demo3_ManualAnimation";
 
 export function App() {
     return (
@@ -11,15 +11,15 @@ export function App() {
                 <div className="p-4 grid grid-cols-[1fr_minmax(20ch,30ch)_1fr] gap-y-4">
 
                     <div className="col-start-2 bg-zinc-900/5">
-                        <DelayedWithState />
+                        <Demo1_DelayedWithState />
                     </div>
 
                     <div className="col-start-2 bg-zinc-900/5">
-                        <DelayedWithHooks />
+                        <Demo2_DelayedWithHooks />
                     </div>
 
                     <div className="col-start-2 bg-zinc-900/5">
-                        <DelayedManualAnimation />
+                        <Demo3_DelayedManualAnimation />
                     </div>
 
                 </div>

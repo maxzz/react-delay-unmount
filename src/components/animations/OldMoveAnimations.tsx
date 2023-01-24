@@ -182,3 +182,9 @@ export function BrokenMultipleBar({ index }: { index: number; }) {
         </div>
     );
 }
+//https://beta.reactjs.org/reference/react/useReducer
+// Caveats:
+// * The dispatch function only updates the state variable for the next render. 
+//   If you read the state variable after calling the dispatch function, you will 
+//   still get the old value that was on the screen before your call.
+//

@@ -3,7 +3,7 @@ import { useDelayUnmount } from '@/hooks/useDelayUnmount';
 import { StartTestButton } from './StartTestButton';
 import css from './animations.module.css';
 
-export const DelayedWithHooks: React.FC = () => {
+export const Demo2_DelayedWithHooks: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);
     const shouldRenderChild = useDelayUnmount(isMounted, 500);
 
