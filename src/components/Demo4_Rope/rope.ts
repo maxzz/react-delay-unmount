@@ -8,8 +8,12 @@ class Mouse {
         this.pos = new Vector(-1000, -1000);
         this.radius = 40;
 
-        canvas.onmousemove = e => this.pos.setXY(e.clientX, e.clientY);
-        canvas.ontouchmove = e => this.pos.setXY(e.touches[0].clientX, e.touches[0].clientY);
+        canvas.onmousemove = (e) => {
+            this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop)
+            console.log('e', this.pos);
+        };
+        // canvas.onmousemove = (e) => this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        canvas.ontouchmove = (e) => this.pos.setXY(e.touches[0].clientX - canvas.offsetLeft, e.touches[0].clientY - canvas.offsetTop);
         canvas.ontouchcancel = () => this.pos.setXY(-1000, -1000);
         canvas.ontouchend = () => this.pos.setXY(-1000, -1000);
     }
@@ -64,7 +68,7 @@ class Dot {
     }
 
     drawLight(ctx: CanvasRenderingContext2D) {
-        ctx.drawImage(
+        this.lightImg && ctx.drawImage(
             this.lightImg,
             this.pos.x - this.lightSize / 2, this.pos.y - this.lightSize / 2, this.lightSize, this.lightSize
         );
@@ -203,8 +207,9 @@ export class RopeMain {
     mouse: Mouse;
     ropes: Rope[] = [];
 
-    static width = window.innerWidth;
-    static height = window.innerHeight;
+    static width = 0;
+    static height = 0;
+
     static dpr = window.devicePixelRatio > 1 ? 2 : 1;
     static interval = 1000 / 60;
 
@@ -222,9 +227,7 @@ export class RopeMain {
 
     private createRopes() {
         this.ropes = [];
-
         const TOTAL = RopeMain.width * 0.06;
-
         for (let i = 0; i < TOTAL + 1; i++) {
             const x = randomNumBetween(RopeMain.width * 0.3, RopeMain.width * 0.7);
             const y = 0;
@@ -232,14 +235,13 @@ export class RopeMain {
             const segments = 10;
             const rope = new Rope({ x, y, gap, segments });
             rope.pin(0);
-
             this.ropes.push(rope);
         }
     }
 
     resize() {
-        RopeMain.width = window.innerWidth;
-        RopeMain.height = window.innerHeight;
+        RopeMain.width = this.canvas.parentElement?.clientWidth || 0;
+        RopeMain.height = this.canvas.parentElement?.clientHeight || 0;
 
         this.canvas.style.width = '100%';
         this.canvas.style.height = '100%';
@@ -278,7 +280,7 @@ function randomNumBetween(min: number, max: number) {
 }
 
 // window.addEventListener('load', () => {
-//     const canvas = document.querySelector('canvas') || ((() => { throw new Error('canvas'); })());
+//     const canvas = document.querySelector('canvas') || ((() => { throw new Error('no canvas'); })());
 //     const app = new RopeMain(canvas);
 
 //     window.addEventListener('resize', app.resize.bind(app));
