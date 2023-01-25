@@ -9,9 +9,14 @@ class Mouse {
         this.radius = 40;
 
         canvas.onmousemove = (e) => {
-            this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop)
+            const r = canvas.getBoundingClientRect();
+            this.pos.setXY(e.clientX - r.left, e.clientY - r.top);
             console.log('e', this.pos);
         };
+        // canvas.onmousemove = (e) => {
+        //     this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop)
+        //     console.log('e', this.pos);
+        // };
         // canvas.onmousemove = (e) => this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
         canvas.ontouchmove = (e) =>
             this.pos.setXY(
