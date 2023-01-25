@@ -117,6 +117,7 @@ class Stick {
             this.startPoint.pos.x += offsetX * m1;
             this.startPoint.pos.y += offsetY * m1;
         }
+        
         if (!this.endPoint.pinned) {
             this.endPoint.pos.x -= offsetX * m2;
             this.endPoint.pos.y -= offsetY * m2;
@@ -290,3 +291,5 @@ function randomNumBetween(min: number, max: number) {
 //     window.addEventListener('resize', app.resize.bind(app));
 //     app.render();
 // });
+
+//TODO: redo class Mouse: handle mouse capture

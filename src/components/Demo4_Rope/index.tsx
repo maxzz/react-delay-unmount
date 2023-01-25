@@ -13,13 +13,11 @@ export function RopeBody() {
         parent.appendChild(canvas);
 
         const rope = new RopeMain(canvas);
+
         // const resize = rope.resize.bind(rope);
-
         // parent.addEventListener('resize')
+
         rope.render();
-
-
-
 
         return () => {
             if (parent) {
@@ -30,7 +28,7 @@ export function RopeBody() {
     }, [ref]);
 
     return (
-        <div ref={ref} className="bg-red-500/10">
+        <div ref={ref} className="opacity-75">
         </div>
     );
 }

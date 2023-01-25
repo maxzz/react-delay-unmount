@@ -18,7 +18,7 @@ export function Demo4_NonReactRope() {
     return (
         <div className="h-40 flex flex-col">
 
-            <StartTestButton onClick={toggle}>Toogle with hooks</StartTestButton>
+            <StartTestButton onClick={toggle}>Rope physics</StartTestButton>
 
             {shouldRenderChild && (
                 <div style={isMounted ? mountedStyle : unmountedStyle}>
