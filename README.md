@@ -12,3 +12,4 @@ React Unmount Delay Experiments. Exploring the ability to animate components on 
 * [Delay unmount on component with hooks](https://codesandbox.io/s/lpn3261j99)
 
 <!-- range: https://codepen.io/hexagoncircle/pen/JjOaabp -->
+<!-- rope: https://codepen.io/rudtjd2548/pen/rNrxopK -->

@@ -8,18 +8,29 @@ export function RopeBody() {
     useEffect(() => {
         if (!ref.current) { return; }
 
+        const parent = ref.current;
         const canvas = document.createElement('canvas');
-        const rope = new RopeMain(canvas);
+        parent.appendChild(canvas);
 
-        ref.current.appendChild(canvas);
+        const rope = new RopeMain(canvas);
+        // const resize = rope.resize.bind(rope);
+
+        // parent.addEventListener('resize')
+        rope.render();
+
+
+
 
         return () => {
-            canvas.parentElement?.removeChild(canvas);
+            if (parent) {
+                // parent.
+                canvas.parentElement?.removeChild(canvas);
+            }
         }
     }, [ref]);
 
     return (
-        <div ref={ref} className="bg-red-500">
+        <div ref={ref} className="bg-red-500/10">
         </div>
     );
 }
