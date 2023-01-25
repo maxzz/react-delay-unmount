@@ -11,18 +11,11 @@ class Mouse {
         canvas.onmousemove = (e) => {
             const r = canvas.getBoundingClientRect();
             this.pos.setXY(e.clientX - r.left, e.clientY - r.top);
-            console.log('e', this.pos);
         };
-        // canvas.onmousemove = (e) => {
-        //     this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop)
-        //     console.log('e', this.pos);
-        // };
-        // canvas.onmousemove = (e) => this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-        canvas.ontouchmove = (e) =>
-            this.pos.setXY(
-                e.touches[0].clientX - canvas.offsetLeft,
-                e.touches[0].clientY - canvas.offsetTop
-            );
+        canvas.ontouchmove = (e) => {
+            const r = canvas.getBoundingClientRect();
+            this.pos.setXY(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top);
+        }
         canvas.ontouchcancel = () => this.pos.setXY(-1000, -1000);
         canvas.ontouchend = () => this.pos.setXY(-1000, -1000);
     }
@@ -78,11 +71,16 @@ class Dot {
     }
 
     drawLight(ctx: CanvasRenderingContext2D) {
-        this.lightImg && ctx.drawImage(this.lightImg, this.pos.x - this.lightSize / 2, this.pos.y - this.lightSize / 2, this.lightSize, this.lightSize);
+        if (this.lightImg)  {
+            ctx.drawImage(this.lightImg, this.pos.x - this.lightSize / 2, this.pos.y - this.lightSize / 2, this.lightSize, this.lightSize)
+        } else {
+            ctx.fillStyle = '#0aa';
+            ctx.fillRect(this.pos.x - this.mass, this.pos.y - this.mass, this.mass * 4, this.mass * 4);
+        }
     }
 
     draw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = '#aaa';
+        ctx.fillStyle = 'orange';
         ctx.fillRect(this.pos.x - this.mass, this.pos.y - this.mass, this.mass * 2, this.mass * 2);
     }
 }
