@@ -1,4 +1,4 @@
-import { Vector } from "./vector";
+import { Vector } from './vector';
 
 class Mouse {
     pos: Vector;
@@ -13,7 +13,11 @@ class Mouse {
             console.log('e', this.pos);
         };
         // canvas.onmousemove = (e) => this.pos.setXY(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-        canvas.ontouchmove = (e) => this.pos.setXY(e.touches[0].clientX - canvas.offsetLeft, e.touches[0].clientY - canvas.offsetTop);
+        canvas.ontouchmove = (e) =>
+            this.pos.setXY(
+                e.touches[0].clientX - canvas.offsetLeft,
+                e.touches[0].clientY - canvas.offsetTop
+            );
         canvas.ontouchcancel = () => this.pos.setXY(-1000, -1000);
         canvas.ontouchend = () => this.pos.setXY(-1000, -1000);
     }
@@ -44,7 +48,7 @@ class Dot {
     }
 
     update(mouse: Mouse) {
-        if (this.pinned) return;
+        if (this.pinned) { return; }
 
         let vel = Vector.sub(this.pos, this.oldPos);
 
@@ -60,18 +64,16 @@ class Dot {
 
         const force = Math.max((mouse.radius - dist) / mouse.radius, 0);
 
-        if (force > 0.6) this.pos.setXY(mouse.pos.x, mouse.pos.y);
-        else {
+        if (force > 0.6) {
+            this.pos.setXY(mouse.pos.x, mouse.pos.y);
+        } else {
             this.pos.add(vel);
             this.pos.add(direction.mult(force));
         }
     }
 
     drawLight(ctx: CanvasRenderingContext2D) {
-        this.lightImg && ctx.drawImage(
-            this.lightImg,
-            this.pos.x - this.lightSize / 2, this.pos.y - this.lightSize / 2, this.lightSize, this.lightSize
-        );
+        this.lightImg && ctx.drawImage(this.lightImg, this.pos.x - this.lightSize / 2, this.pos.y - this.lightSize / 2, this.lightSize, this.lightSize);
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -177,23 +179,23 @@ class Rope {
     }
 
     update(mouse: Mouse) {
-        this.dots.forEach(dot => {
+        this.dots.forEach((dot) => {
             dot.update(mouse);
         });
 
         for (let i = 0; i < this.iterations; i++) {
-            this.sticks.forEach(stick => {
+            this.sticks.forEach((stick) => {
                 stick.update();
             });
         }
     }
 
     draw(ctx: CanvasRenderingContext2D) {
-        this.dots.forEach(dot => {
+        this.dots.forEach((dot) => {
             dot.draw(ctx);
         });
 
-        this.sticks.forEach(stick => {
+        this.sticks.forEach((stick) => {
             stick.draw(ctx);
         });
 
@@ -282,8 +284,6 @@ function randomNumBetween(min: number, max: number) {
 // window.addEventListener('load', () => {
 //     const canvas = document.querySelector('canvas') || ((() => { throw new Error('no canvas'); })());
 //     const app = new RopeMain(canvas);
-
 //     window.addEventListener('resize', app.resize.bind(app));
-    
 //     app.render();
 // });

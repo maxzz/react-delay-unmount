@@ -26,7 +26,7 @@ export function RopeBody() {
                 // parent.
                 canvas.parentElement?.removeChild(canvas);
             }
-        }
+        };
     }, [ref]);
 
     return (
