@@ -15,7 +15,7 @@ class Mouse {
         canvas.ontouchmove = (e) => {
             const r = canvas.getBoundingClientRect();
             this.pos.setXY(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top);
-        }
+        };
         canvas.ontouchcancel = () => this.pos.setXY(-1000, -1000);
         canvas.ontouchend = () => this.pos.setXY(-1000, -1000);
     }
@@ -71,8 +71,8 @@ class Dot {
     }
 
     drawLight(ctx: CanvasRenderingContext2D) {
-        if (this.lightImg)  {
-            ctx.drawImage(this.lightImg, this.pos.x - this.lightSize / 2, this.pos.y - this.lightSize / 2, this.lightSize, this.lightSize)
+        if (this.lightImg) {
+            ctx.drawImage(this.lightImg, this.pos.x - this.lightSize / 2, this.pos.y - this.lightSize / 2, this.lightSize, this.lightSize);
         } else {
             ctx.fillStyle = '#0aa';
             ctx.fillRect(this.pos.x - this.mass, this.pos.y - this.mass, this.mass * 4, this.mass * 4);
@@ -117,7 +117,7 @@ class Stick {
             this.startPoint.pos.x += offsetX * m1;
             this.startPoint.pos.y += offsetY * m1;
         }
-        
+
         if (!this.endPoint.pinned) {
             this.endPoint.pos.x -= offsetX * m2;
             this.endPoint.pos.y -= offsetY * m2;
@@ -207,6 +207,12 @@ class Rope {
     }
 }
 
+class MouseDisplay {
+    render(ctx: CanvasRenderingContext2D, mouse: Mouse) {
+        ctx.fillText(`${mouse.pos.x.toFixed(0)}:${mouse.pos.y.toFixed(0)}`, 0, 16);
+    }
+}
+
 export class RopeMain {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
@@ -219,6 +225,8 @@ export class RopeMain {
     static dpr = window.devicePixelRatio > 1 ? 2 : 1;
     static interval = 1000 / 60;
 
+    mouseDisplay: MouseDisplay;
+
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext('2d')!;
@@ -229,6 +237,8 @@ export class RopeMain {
         //window.addEventListener('resize', this.resize.bind(this));
 
         this.createRopes();
+
+        this.mouseDisplay = new MouseDisplay();
     }
 
     private createRopes() {
@@ -263,6 +273,8 @@ export class RopeMain {
         let now, delta;
         let then = Date.now();
 
+
+
         const frame = () => {
             requestAnimationFrame(frame);
 
@@ -272,10 +284,13 @@ export class RopeMain {
             then = now - (delta % RopeMain.interval);
 
             this.ctx.clearRect(0, 0, RopeMain.width, RopeMain.height);
+
             this.ropes.forEach((rope) => {
                 rope.update(this.mouse);
                 rope.draw(this.ctx);
             });
+
+            this.mouseDisplay.render(this.ctx, this.mouse);
         };
         requestAnimationFrame(frame);
     }
