@@ -13,7 +13,7 @@ export function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent): readonl
     return [(evt.clientX - rect.left) * scaleX, (evt.clientY - rect.top) * scaleY] as const;
 }
 
-export function getCanvasCoords(ctx: CanvasRenderingContext2D, screenX: number, screenY: number): readonly [number, number] {
+export function getCanvasCoords(ctx: CanvasRenderingContext2D, [screenX, screenY]: [number, number]): readonly [number, number] {
     let matrix = ctx.getTransform();
     var imatrix = matrix.invertSelf();
     let x = screenX * imatrix.a + screenY * imatrix.c + imatrix.e;

@@ -1,3 +1,4 @@
+import { getCanvasCoords, getCanvasScale } from './mouse-pos';
 import { Vector } from './vector';
 
 class Mouse {
@@ -209,7 +210,12 @@ class Rope {
 
 class MouseDisplay {
     render(ctx: CanvasRenderingContext2D, mouse: Mouse) {
-        ctx.fillText(`${mouse.pos.x.toFixed(0)}:${mouse.pos.y.toFixed(0)}`, 0, 16);
+        const [scaleX, scaleY, rect] = getCanvasScale(ctx.canvas);
+        const [transformedX, transformedY] = getCanvasCoords(ctx, [mouse.pos.x * scaleX, mouse.pos.y * scaleY]);
+
+        ctx.font = "10px monospace";
+        ctx.fillText(`direct ${mouse.pos.x.toFixed(0)}:${mouse.pos.y.toFixed(0)}`, 0, 16);
+        ctx.fillText(`matrix ${transformedX.toFixed(0)}:${transformedY.toFixed(0)}`, 0, 32);
     }
 }
 

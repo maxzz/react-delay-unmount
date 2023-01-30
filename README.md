@@ -11,5 +11,5 @@ React Unmount Delay Experiments. Exploring the ability to animate components on 
 * [Delay unmount on component with state](https://codesandbox.io/s/1rx7m8px3q?file=/index.js:72-75)
 * [Delay unmount on component with hooks](https://codesandbox.io/s/lpn3261j99)
 
-<!-- range: https://codepen.io/hexagoncircle/pen/JjOaabp -->
-<!-- rope: https://codepen.io/rudtjd2548/pen/rNrxopK -->
+<!-- range: https://codepen.io/hexagoncircle/pen/JjOaabp customized range control -->
+<!-- rope: https://codepen.io/rudtjd2548/pen/rNrxopK 'Interactive ropes background (Verlet physics algorithm)' -->
